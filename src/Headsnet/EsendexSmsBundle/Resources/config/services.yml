@@ -1,0 +1,3 @@
+imports:
+  - { resource: esendex.yml }
+  - { resource: sms.yml }

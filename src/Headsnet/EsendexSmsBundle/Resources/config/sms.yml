@@ -1,0 +1,54 @@
+
+parameters:
+  sms_delivery_override: ~
+
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  ########################## SMS SENDER  ##################################
+
+  Headsnet\EsendexSmsBundle\DependencyInjection\SmsSender:
+    arguments:
+      $deliveryOverride: '%sms_delivery_override%'
+
+  Headsnet\EsendexSmsBundle\EventListener\SmsSendListener:
+    tags:
+      - { name: kernel.event_listener, event: msg.sms.send }
+
+  ###################### SMS TEMPLATE BUILDER ##############################
+
+  # Domain
+
+  Headsnet\EsendexSmsBundle\DependencyInjection\SmsBuilderParser:
+
+  Headsnet\EsendexSmsBundle\DependencyInjection\SmsBuilderCommonData:
+    arguments:
+      - 'dummy'
+      - 'dummy'
+      - 'dummy'
+      - 'dummy'
+
+  # Listeners
+
+  msg.sms.builder.parser_listener:
+    class: Headsnet\EsendexSmsBundle\EventListener\SmsBuildListener
+    arguments:
+      - '@Headsnet\EsendexSmsBundle\DependencyInjection\SmsBuilderParser'
+    tags:
+      - { name: kernel.event_listener, event: msg.sms.build, priority: -1000}
+
+  msg.sms.builder.common_data_listener:
+    class: Headsnet\EsendexSmsBundle\EventListener\SmsBuildListener
+    arguments:
+      - '@Headsnet\EsendexSmsBundle\DependencyInjection\SmsBuilderCommonData'
+    tags:
+      - { name: kernel.event_listener, event: msg.sms.build, priority: 50}
+
+  ############################# SMS API ####################################
+
+  Headsnet\EsendexSmsBundle\DependencyInjection\Api\EsendexApi:
+    public: true

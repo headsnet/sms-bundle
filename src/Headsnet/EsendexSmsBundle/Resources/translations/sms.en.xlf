@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="sms.appointment.customer.confirm">
+                <source>sms.appointment.customer.confirm</source>
+                <target>Here is confirmation of your appointment with Massage Me</target>
+            </trans-unit>
+
+            <trans-unit id="sms.appointment.therapist.confirm">
+                <source>sms.appointment.therapist.confirm</source>
+                <target>You have been assigned to the following booking. Please confirm.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
