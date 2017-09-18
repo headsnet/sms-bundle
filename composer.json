@@ -12,7 +12,7 @@
       "Headsnet\\SmsBundle\\Tests\\": "tests"
     }
   },
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Ben Roberts",
