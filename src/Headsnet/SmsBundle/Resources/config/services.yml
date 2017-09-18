@@ -1,0 +1,63 @@
+
+parameters:
+  esendex.authentication.class: Esendex\Authentication\LoginAuthentication
+  headsnet_sms.default.factory.class: Headsnet\Sms\Factory\SmsFactory
+  headsnet_sms.default.parameters: []
+
+services:
+
+  _defaults:
+    public: false
+
+  headsnet_sms.templating:
+    alias: templating.engine.twig
+
+  Headsnet\Sms\Renderer\Renderer:
+    arguments:
+      - '@headsnet_sms.templating'
+      - '%headsnet_sms.default.parameters%'
+
+  Headsnet\Sms\Dispatchers\DummyDispatcher:
+
+  Esendex\DispatchService:
+    autowire: true
+
+  Headsnet\Sms\Dispatchers\EsendexDispatcher:
+    - '@Esendex\DispatchService'
+
+  Headsnet\Sms\SmsSender:
+    arguments:
+      - '@headsnet_sms.dispatcher.class'
+      - '@Headsnet\Sms\Renderer\Renderer'
+
+  headsnet_sms.sms_factory:
+    class: '%headsnet_sms.default.factory.class%'
+    arguments:
+      - '%headsnet_sms.esendex.vmn%'
+
+  Headsnet\Sms\SmsSending:
+    arguments:
+      - '@Headsnet\Sms\SmsSender'
+      - '@headsnet_sms.sms_factory'
+
+  Headsnet\SmsBundle\EventListener\TerminateListener:
+    arguments:
+      - '@Headsnet\Sms\SmsSender'
+    tags: [{ name: kernel.event_listener, event: kernel.terminate, method: execute, priority: 255 }]
+
+  ########################## Esendex ##################################
+
+  headsnet.sms.esendex.authentication:
+    class: '%esendex.authentication.class%'
+    arguments:
+      - '%esendex.account_reference%'
+      - '%esendex.username%'
+      - '%esendex.password%'
+
+  headsnet.sms.esendex.dispatcher:
+    class: 'Headsnet\Sms\Dispatchers\EsendexDispatcher'
+
+  ########################## APIs ##################################
+
+  Headsnet\SmsBundle\DependencyInjection\Api\EsendexApi:
+    public: true

@@ -1,4 +1,0 @@
-
-messaging:
-  resource: "@HeadsnetEsendexSmsBundle/Controller/"
-  type:     annotation

@@ -1,15 +1,15 @@
 {
-  "name": "headsnet/messaging-bundle",
+  "name": "headsnet/sms-bundle",
   "description": "Provide email and SMS sending functions",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Headsnet\\EsendexSmsBundle\\": "src/"
+      "Headsnet\\SmsBundle\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Headsnet\\EsendexSmsBundle\\Tests\\": "tests"
+      "Headsnet\\SmsBundle\\Tests\\": "tests"
     }
   },
   "license": "proprietary",
@@ -25,7 +25,7 @@
     "esendex/sdk": "1.*",
     "misd/phone-number-bundle": "^1.2",
     "sensio/framework-extra-bundle": "^3.0",
-    "symfony/framework-bundle": "~3.0",
+    "symfony/framework-bundle": "~3.3",
     "twig/twig": "^2.0"
   },
   "config": {
