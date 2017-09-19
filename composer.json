@@ -10,7 +10,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Headsnet\\SmsBundle\\Tests\\": "tests"
+      "Headsnet\\Sms\\Tests\\": "tests"
     }
   },
   "license": "MIT",
