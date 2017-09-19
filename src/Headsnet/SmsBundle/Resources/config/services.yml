@@ -17,12 +17,12 @@ services:
       - '@headsnet_sms.templating'
       - '%headsnet_sms.default.parameters%'
 
-  Headsnet\Sms\Dispatchers\DummyDispatcher:
+  Headsnet\Sms\Dispatcher\DummyDispatcher:
 
   Esendex\DispatchService:
     autowire: true
 
-  Headsnet\Sms\Dispatchers\EsendexDispatcher:
+  Headsnet\Sms\Dispatcher\EsendexDispatcher:
     - '@Esendex\DispatchService'
     - '%headsnet_sms.delivery_override%'
 
@@ -56,7 +56,7 @@ services:
       - '%esendex.password%'
 
   headsnet.sms.esendex.dispatcher:
-    class: 'Headsnet\Sms\Dispatchers\EsendexDispatcher'
+    class: 'Headsnet\Sms\Dispatcher\EsendexDispatcher'
 
   ########################## APIs ##################################
 

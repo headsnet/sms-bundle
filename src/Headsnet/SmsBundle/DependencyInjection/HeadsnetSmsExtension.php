@@ -36,14 +36,14 @@ class HeadsnetSmsExtension extends Extension
 		{
 			$container->setAlias(
 				'headsnet_sms.dispatcher.class',
-				'Headsnet\Sms\Dispatchers\EsendexDispatcher'
+				'Headsnet\Sms\Dispatcher\EsendexDispatcher'
 			);
 		}
 		else
 		{
 			$container->setAlias(
 				'headsnet_sms.dispatcher.class',
-				'Headsnet\Sms\Dispatchers\DummyDispatcher'
+				'Headsnet\Sms\Dispatcher\DummyDispatcher'
 			);
 		}
 	}
