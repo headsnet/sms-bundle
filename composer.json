@@ -4,7 +4,8 @@
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Headsnet\\SmsBundle\\": "src/"
+      "Headsnet\\Sms\\": "src/Headsnet/Sms",
+      "Headsnet\\SmsBundle\\": "src/Headsnet/SmsBundle"
     }
   },
   "autoload-dev": {
