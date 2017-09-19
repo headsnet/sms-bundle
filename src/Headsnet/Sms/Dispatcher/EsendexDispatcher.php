@@ -13,7 +13,7 @@ use Headsnet\Sms\Model\SmsResultItem;
 /**
  * This dispatcher uses the EsendexSDK to send SMS messages via the Esendex SMS gateway
  */
-class EsendexDispatcher implements DispatcherInterface
+class EsendexDispatcher extends AbstractDispatcher implements DispatcherInterface
 {
 	/**
 	 * @var DispatchService
@@ -22,10 +22,12 @@ class EsendexDispatcher implements DispatcherInterface
 
 	/**
 	 * @param DispatchService $dispatcher
+	 * @param string|null     $deliveryOverride
 	 */
-	public function __construct(DispatchService $dispatcher)
+	public function __construct(DispatchService $dispatcher, $deliveryOverride = null)
 	{
 		$this->dispatcher = $dispatcher;
+		$this->deliveryOverride = $deliveryOverride;
 	}
 
 	/**
@@ -42,7 +44,7 @@ class EsendexDispatcher implements DispatcherInterface
 
 		$message = new DispatchMessage(
 			$sender, // Send from the VMN
-			$message->getRecipient(),
+			$this->doDeliveryOverride($message->getRecipient()),
 			$message->getMessage(),
 			Message::SmsType
 		);

@@ -24,6 +24,7 @@ services:
 
   Headsnet\Sms\Dispatchers\EsendexDispatcher:
     - '@Esendex\DispatchService'
+    - '%headsnet_sms.delivery_override%'
 
   Headsnet\Sms\SmsSender:
     arguments:

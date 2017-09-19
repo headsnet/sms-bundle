@@ -29,6 +29,7 @@ class HeadsnetSmsExtension extends Extension
 		);
 		$loader->load('services.yml');
 
+		$container->setParameter('headsnet_sms.delivery_override', $config['delivery_override']);
 		$container->setParameter('headsnet_sms.esendex.vmn', $config['esendex']['vmn']);
 
 		if ($config['dispatcher'] == 'esendex')
