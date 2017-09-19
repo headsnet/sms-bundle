@@ -22,7 +22,9 @@ class Configuration implements ConfigurationInterface
 
 		$rootNode
 			->children()
-				->scalarNode('delivery_override')->end()
+				->scalarNode('delivery_override')
+					->defaultNull()
+				->end()
 				->enumNode('dispatcher')
 					->values(['dummy', 'esendex'])
 					->isRequired()
