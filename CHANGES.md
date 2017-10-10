@@ -1,3 +1,6 @@
+### 10 October 2017 - Version 0.1.8:
+ - Added event subscriber example to docs
+
 ### 10 October 2017 - Version 0.1.7:
  - Improved some class names for clarity
  - Simplified event name constants
