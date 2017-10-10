@@ -1,6 +1,10 @@
-# Symfony Esendex SMS Bundle
+# Symfony SMS Bundle
 
-Symfony bundle to send and receive SMS messages via the Esendex SMS gateway.
+Symfony bundle to send and receive SMS messages. 
+
+Currently only the Esendex SMS gateway is supported - https://www.esendex.com/. 
+
+Other gateways may be added in the future. 
 
 Greatly inspired by the excellent `tomazahlin/symfony-mailer-bundle`
 https://github.com/tomazahlin/symfony-mailer-bundle 
@@ -154,3 +158,7 @@ These end-points will receive the payload from Esendex and dispatch one of the f
   - headsnet.sms.opt_out
   
 Listeners to these events will receive a `Headsnet\SmsBundle\Event\SmsApiEvent` instance which contains the message data.
+
+## Contributing
+
+Pull requests and other contributions are very welcome.
