@@ -1,8 +1,6 @@
 # Symfony SMS Bundle
 
-Symfony bundle to send and receive SMS messages. 
-
-Currently only the EsendexEventDispatcher SMS gateway is supported - https://www.esendex.com/. 
+Symfony bundle to send and receive SMS messages. Currently only the Esendex SMS gateway is supported - https://www.esendex.com/. 
 
 Other gateways may be added in the future. 
 
