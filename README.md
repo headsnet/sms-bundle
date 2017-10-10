@@ -159,6 +159,8 @@ These end-points will receive the payload from EsendexEventDispatcher and dispat
   
 Listeners to these events will receive a `Headsnet\SmsBundle\Event\SmsEvent` instance which contains the message data.
 
+View an example [Event Subscriber](doc/subscribing-to-events.md) for these events.
+
 ## Contributing
 
 Pull requests and other contributions are very welcome.
