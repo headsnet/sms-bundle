@@ -1,3 +1,8 @@
+### 10 October 2017 - Version 0.1.7:
+ - Improved some class names for clarity
+ - Simplified event name constants
+ - Add method requirements to routing to only allow HTTP POSTs
+
 ### 10 October 2017 - Version 0.1.6:
  - Added EsendexEventDispatcher OptOut endpoint
  - Switched routing to YML format
