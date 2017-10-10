@@ -2,7 +2,7 @@
 
 Symfony bundle to send and receive SMS messages. 
 
-Currently only the Esendex SMS gateway is supported - https://www.esendex.com/. 
+Currently only the EsendexEventDispatcher SMS gateway is supported - https://www.esendex.com/. 
 
 Other gateways may be added in the future. 
 
@@ -128,10 +128,10 @@ class MyService
 
 ### Setting up Push Notifications
 
-If you want the Esendex gateway to phone home with delivery notifications etc, you must 
+If you want the EsendexEventDispatcher gateway to phone home with delivery notifications etc, you must 
 ensure you have added the bundle's routing in your `routing.yml` file.
 
-Then, in your Esendex control panel, configure the Push Notifications routes with the 
+Then, in your EsendexEventDispatcher control panel, configure the Push Notifications routes with the 
 following URLs:
 
 __SMS received__
@@ -150,14 +150,14 @@ __Opt-out__
 
 `https://app.your-domain.com/sms/esendex/opt-out`
 
-These end-points will receive the payload from Esendex and dispatch one of the following events:
+These end-points will receive the payload from EsendexEventDispatcher and dispatch one of the following events:
 
   - headsnet.sms.delivered
   - headsnet.sms.error
   - headsnet.sms.received
   - headsnet.sms.opt_out
   
-Listeners to these events will receive a `Headsnet\SmsBundle\Event\SmsApiEvent` instance which contains the message data.
+Listeners to these events will receive a `Headsnet\SmsBundle\Event\SmsEvent` instance which contains the message data.
 
 ## Contributing
 

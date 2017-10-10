@@ -11,7 +11,8 @@ use Headsnet\Sms\Renderer\RendererInterface;
 use SplPriorityQueue;
 
 /**
- * Class SmsSender is actually an SMS broker, which sends (forwards) mail messages to the Esendex DispatchService
+ * Class SmsSender is actually an SMS broker, which sends (forwards) SMS
+ * messages to the DispatchService
  */
 class SmsSender implements QueueableSmsSenderInterface
 {

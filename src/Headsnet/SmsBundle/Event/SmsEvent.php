@@ -6,9 +6,9 @@ namespace Headsnet\SmsBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Event used when SMS is handled by the SMS API
+ * Event is dispatched when push notifications are received at the end-points
  */
-class SmsApiEvent extends Event
+class SmsEvent extends Event
 {
 	/**
 	 * @var string

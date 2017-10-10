@@ -11,21 +11,21 @@ final class SmsEvents
 	/**
 	 * This event is dispatched when an SMS is confirmed as delivered
 	 */
-	const SMS_DELIVERED = 'headsnet.sms.delivered';
+	const DELIVERED = 'headsnet.sms.delivered';
 
 	/**
 	 * This event is dispatched when an SMS delivery encounters an error
 	 */
-	const SMS_ERROR = 'headsnet.sms.error';
+	const ERROR = 'headsnet.sms.error';
 
 	/**
 	 * This event is dispatched when an SMS is received
 	 */
-	const SMS_RECEIVED = 'headsnet.sms.received';
+	const RECEIVED = 'headsnet.sms.received';
 
 	/**
 	 * This event is dispatched when an opt-out request is received
 	 */
-	const SMS_OPT_OUT = 'headsnet.sms.opt_out';
+	const OPT_OUT = 'headsnet.sms.opt_out';
 
 }

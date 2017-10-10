@@ -1,5 +1,5 @@
 ### 10 October 2017 - Version 0.1.6:
- - Added Esendex OptOut endpoint
+ - Added EsendexEventDispatcher OptOut endpoint
  - Switched routing to YML format
  - Removed dependency on FrameworkExtraBundle
 

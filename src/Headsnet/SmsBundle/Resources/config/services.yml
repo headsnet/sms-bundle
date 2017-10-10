@@ -60,5 +60,5 @@ services:
 
   ########################## APIs ##################################
 
-  Headsnet\SmsBundle\DependencyInjection\Api\EsendexApi:
+  Headsnet\SmsBundle\DependencyInjection\EventDispatcher\EsendexEventDispatcher:
     public: true

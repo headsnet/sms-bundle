@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Headsnet\SmsBundle\Controller;
 
-use Headsnet\SmsBundle\DependencyInjection\Api\EsendexApi;
+use Headsnet\SmsBundle\DependencyInjection\EventDispatcher\EsendexEventDispatcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class EsendexApiController
+ * Class EsendexController
  *
  * See https://www.esendex.com/developertools/pushnotifications/gettingstarted
  */
-class EsendexApiController extends Controller
+class EsendexController extends Controller
 {
 
 	/**
@@ -25,7 +25,7 @@ class EsendexApiController extends Controller
 	{
 		$xml = simplexml_load_string($request->getContent());
 
-		$success = $this->get(EsendexApi::class)->acknowledgeDeliveryNotification(
+		$success = $this->get(EsendexEventDispatcher::class)->acknowledgeDeliveryNotification(
 			// @codingStandardsIgnoreStart
 			$xml->MessageId->__toString()
 			// @codingStandardsIgnoreEnd
@@ -43,7 +43,7 @@ class EsendexApiController extends Controller
 	{
 		$xml = simplexml_load_string($request->getContent());
 
-		$success = $this->get(EsendexApi::class)->logDeliveryError(
+		$success = $this->get(EsendexEventDispatcher::class)->logDeliveryError(
 		// @codingStandardsIgnoreStart
 			$xml->MessageId->__toString()
 		// @codingStandardsIgnoreEnd
@@ -61,7 +61,7 @@ class EsendexApiController extends Controller
 	{
 		$xml = simplexml_load_string($request->getContent());
 
-		$success = $this->get(EsendexApi::class)->saveReceivedMessage(
+		$success = $this->get(EsendexEventDispatcher::class)->saveReceivedMessage(
 		// @codingStandardsIgnoreStart
 			$xml->MessageId->__toString(),
 			$xml->From->__toString(),
@@ -81,7 +81,7 @@ class EsendexApiController extends Controller
 	{
 		$xml = simplexml_load_string($request->getContent());
 
-		$success = $this->get(EsendexApi::class)->optOut(
+		$success = $this->get(EsendexEventDispatcher::class)->optOut(
 		// @codingStandardsIgnoreStart
 			$xml->MessageId->__toString(),
 			$xml->From->__toString(),

@@ -1,20 +1,20 @@
 
 esendex_delivery_notify:
   path:     /esendex/delivery-notify
-  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:deliveryNotify }
+  defaults: { _controller: HeadsnetSmsBundle:Esendex:deliveryNotify }
   methods:  [POST]
 
 esendex_delivery_error:
   path:     /esendex/delivery-error
-  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:deliveryError }
+  defaults: { _controller: HeadsnetSmsBundle:Esendex:deliveryError }
   methods:  [POST]
 
 esendex_message_received:
   path:     /esendex/message-received
-  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:messageReceived }
+  defaults: { _controller: HeadsnetSmsBundle:Esendex:messageReceived }
   methods:  [POST]
 
 esendex_opt_out:
   path:     /esendex/opt-out
-  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:optOut }
+  defaults: { _controller: HeadsnetSmsBundle:Esendex:optOut }
   methods:  [POST]

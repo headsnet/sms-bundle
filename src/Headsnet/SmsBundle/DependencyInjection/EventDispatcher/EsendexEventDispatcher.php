@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Headsnet\SmsBundle\DependencyInjection\Api;
+namespace Headsnet\SmsBundle\DependencyInjection\EventDispatcher;
 
-use Headsnet\SmsBundle\Event\SmsApiEvent;
+use Headsnet\SmsBundle\Event\SmsEvent;
 use Headsnet\SmsBundle\SmsEvents;
 use Headsnet\SmsBundle\SmsStatus;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * Service handles data submitted to our API end point from the Esendex system
  */
-class EsendexApi
+class EsendexEventDispatcher
 {
 	/**
 	 * @var EventDispatcherInterface
@@ -33,8 +33,8 @@ class EsendexApi
 	 */
 	public function acknowledgeDeliveryNotification(string $messageId)
 	{
-		$event = new SmsApiEvent($messageId, SmsStatus::STATUS_DELIVERED);
-		$this->dispatcher->dispatch(SmsEvents::SMS_DELIVERED, $event);
+		$event = new SmsEvent($messageId, SmsStatus::STATUS_DELIVERED);
+		$this->dispatcher->dispatch(SmsEvents::DELIVERED, $event);
 	}
 
 	/**
@@ -44,8 +44,8 @@ class EsendexApi
 	 */
 	public function logDeliveryError(string $messageId)
 	{
-		$event = new SmsApiEvent($messageId, SmsStatus::STATUS_ERROR);
-		$this->dispatcher->dispatch(SmsEvents::SMS_ERROR, $event);
+		$event = new SmsEvent($messageId, SmsStatus::STATUS_ERROR);
+		$this->dispatcher->dispatch(SmsEvents::ERROR, $event);
 	}
 
 	/**
@@ -57,8 +57,8 @@ class EsendexApi
 	 */
 	public function saveReceivedMessage(string $messageId, string $from, string $body)
 	{
-		$event = new SmsApiEvent($messageId, SmsStatus::STATUS_RECEIVED, $from, $body);
-		$this->dispatcher->dispatch(SmsEvents::SMS_RECEIVED, $event);
+		$event = new SmsEvent($messageId, SmsStatus::STATUS_RECEIVED, $from, $body);
+		$this->dispatcher->dispatch(SmsEvents::RECEIVED, $event);
 	}
 
 	/**
@@ -70,8 +70,8 @@ class EsendexApi
 	 */
 	public function optOut(string $messageId, string $from, string $body)
 	{
-		$event = new SmsApiEvent($messageId, SmsStatus::STATUS_RECEIVED, $from, $body);
-		$this->dispatcher->dispatch(SmsEvents::SMS_OPT_OUT, $event);
+		$event = new SmsEvent($messageId, SmsStatus::STATUS_RECEIVED, $from, $body);
+		$this->dispatcher->dispatch(SmsEvents::OPT_OUT, $event);
 	}
 
 }
