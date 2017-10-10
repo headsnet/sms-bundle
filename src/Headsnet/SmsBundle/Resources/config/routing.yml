@@ -1,4 +1,16 @@
 
-messaging:
-  resource: "@HeadsnetSmsBundle/Controller/"
-  type:     annotation
+esendex_delivery_notify:
+  path:     /esendex/delivery-notify
+  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:deliveryNotify }
+
+esendex_delivery_error:
+  path:     /esendex/delivery-error
+  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:deliveryError }
+
+esendex_message_received:
+  path:     /esendex/message-received
+  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:messageReceived }
+
+esendex_opt_out:
+  path:     /esendex/opt-out
+  defaults: { _controller: HeadsnetSmsBundle:EsendexApi:optOut }

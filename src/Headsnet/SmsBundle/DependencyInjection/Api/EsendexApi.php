@@ -61,4 +61,17 @@ class EsendexApi
 		$this->dispatcher->dispatch(SmsEvents::SMS_RECEIVED, $event);
 	}
 
+	/**
+	 * Create new SmsMessage record for newly received incoming SMS
+	 *
+	 * @param string $messageId
+	 * @param string $from
+	 * @param string $body
+	 */
+	public function optOut(string $messageId, string $from, string $body)
+	{
+		$event = new SmsApiEvent($messageId, SmsStatus::STATUS_RECEIVED, $from, $body);
+		$this->dispatcher->dispatch(SmsEvents::SMS_OPT_OUT, $event);
+	}
+
 }

@@ -9,20 +9,23 @@ namespace Headsnet\SmsBundle;
 final class SmsEvents
 {
 	/**
-	 * This event is called by the API when an SMS is confirmed as delivered
+	 * This event is dispatched when an SMS is confirmed as delivered
 	 */
-	const SMS_DELIVERED = 'msg.sms.delivered';
+	const SMS_DELIVERED = 'headsnet.sms.delivered';
 
 	/**
-	 * This event is called by the API when an SMS delivery encounters an error
+	 * This event is dispatched when an SMS delivery encounters an error
 	 */
-	const SMS_ERROR = 'msg.sms.error';
+	const SMS_ERROR = 'headsnet.sms.error';
 
 	/**
-	 * This event is called by the API that receives incoming SMS
-	 *
-	 * Used to check incoming messages for Therapist confirmations of new bookings
+	 * This event is dispatched when an SMS is received
 	 */
-	const SMS_RECEIVED = 'msg.sms.received';
+	const SMS_RECEIVED = 'headsnet.sms.received';
+
+	/**
+	 * This event is dispatched when an opt-out request is received
+	 */
+	const SMS_OPT_OUT = 'headsnet.sms.opt_out';
 
 }

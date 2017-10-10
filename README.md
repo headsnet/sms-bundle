@@ -29,7 +29,8 @@ If you need to receive SMS then add the routing configuration in `app/config/rou
 
 ```
 headsnet_sms:
-  resource: "@HeadsnetSmsBundle/Resources/config/routing.yml"
+  resource: '@HeadsnetSmsBundle/Resources/config/routing.yml'
+  prefix:   '/sms'
 ```
 
 ## Configuration
@@ -131,14 +132,25 @@ following URLs:
 
 __SMS received__
 
-`https://app.your-domain.com/api/esendex/message-received`
+`https://app.your-domain.com/sms/esendex/message-received`
 
 __SMS delivered__
 
-`https://app.your-domain.com/api/esendex/delivery-notify`
+`https://app.your-domain.com/sms/esendex/delivery-notify`
 
 __SMS failed__
 
-`https://app.your-domain.com/api/esendex/delivery-error`
+`https://app.your-domain.com/sms/esendex/delivery-error`
 
-__Opt-out__ - Not yet supported
+__Opt-out__
+
+`https://app.your-domain.com/sms/esendex/opt-out`
+
+These end-points will receive the payload from Esendex and dispatch one of the following events:
+
+  - headsnet.sms.delivered
+  - headsnet.sms.error
+  - headsnet.sms.received
+  - headsnet.sms.opt_out
+  
+Listeners to these events will receive a `Headsnet\SmsBundle\Event\SmsApiEvent` instance which contains the message data.
