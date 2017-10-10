@@ -61,4 +61,6 @@ services:
   ########################## APIs ##################################
 
   Headsnet\SmsBundle\DependencyInjection\EventDispatcher\EsendexEventDispatcher:
+    arguments:
+      - '@event_dispatcher'
     public: true
