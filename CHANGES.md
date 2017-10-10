@@ -1,4 +1,11 @@
 ### 10 October 2017 - Version 0.1.8:
+ - Fix paragraph
+ - Add missing argument
+ - Fix typo
+ - Version bump to 0.1.8
+ - Added event subscriber example to docs
+
+### 10 October 2017 - Version 0.1.8:
  - Added event subscriber example to docs
 
 ### 10 October 2017 - Version 0.1.7:
