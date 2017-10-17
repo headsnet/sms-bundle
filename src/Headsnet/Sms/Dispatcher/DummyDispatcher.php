@@ -29,6 +29,8 @@ class DummyDispatcher implements DispatcherInterface
 		$resultItem = new SmsResultItem();
 		$resultItem->setId('someId');
 		$resultItem->setUri('someUri');
+		$resultItem->setRecipient($message->getRecipient());
+		$resultItem->setMessage($message->getMessage());
 
 		return $resultItem;
 	}

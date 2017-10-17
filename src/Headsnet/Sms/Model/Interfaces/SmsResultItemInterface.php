@@ -23,4 +23,18 @@ interface SmsResultItemInterface
 	 */
 	public function getUri(): string;
 
+	/**
+	 * Get the recipient of the message
+	 *
+	 * @return string
+	 */
+	public function getRecipient(): string;
+
+	/**
+	 * Get the content of the message
+	 *
+	 * @return string
+	 */
+	public function getMessage(): string;
+
 }

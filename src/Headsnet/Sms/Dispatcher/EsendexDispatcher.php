@@ -42,18 +42,20 @@ class EsendexDispatcher extends AbstractDispatcher implements DispatcherInterfac
 		// Remove the + sign from the start of the number
 		$sender = str_replace('+', '', $message->getSender());
 
-		$message = new DispatchMessage(
+		$dispatchMessage = new DispatchMessage(
 			$sender, // Send from the VMN
 			$this->doDeliveryOverride($message->getRecipient()),
 			$message->getMessage(),
 			Message::SmsType
 		);
 
-		$response = $this->dispatcher->send($message);
+		$response = $this->dispatcher->send($dispatchMessage);
 
 		$resultItem = new SmsResultItem();
 		$resultItem->setId($response->id());
 		$resultItem->setUri($response->uri());
+		$resultItem->setRecipient($message->getRecipient());
+		$resultItem->setMessage($message->getMessage());
 
 		return $resultItem;
 	}
