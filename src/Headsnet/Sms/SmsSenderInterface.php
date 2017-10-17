@@ -5,7 +5,7 @@ namespace Headsnet\Sms;
 
 use Headsnet\Sms\Exception\SmsException;
 use Headsnet\Sms\Exception\SmsSenderException;
-use Headsnet\Sms\Model\Interfaces\SmsMessageInterface;
+use Headsnet\Sms\Model\Interfaces\SmsResultItemInterface;
 use Headsnet\Sms\Model\Interfaces\TransformedSmsMessageInterface;
 use Headsnet\Sms\Model\SmsMessage;
 
@@ -20,7 +20,7 @@ interface SmsSenderInterface
      * 
      * @param SmsMessage $smsMessage
      *
-     * @return SmsSenderInterface
+     * @return SmsResultItemInterface
      * @throws SmsException
      */
     public function send(SmsMessage $smsMessage);
@@ -32,7 +32,7 @@ interface SmsSenderInterface
      * 
      * @param TransformedSmsMessageInterface $message
      *
-     * @return SmsMessageInterface
+     * @return SmsResultItemInterface
      * @throws SmsSenderException
      */
     public function sendDispatchMessage(TransformedSmsMessageInterface $message);

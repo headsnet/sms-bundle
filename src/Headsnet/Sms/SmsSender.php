@@ -61,7 +61,8 @@ class SmsSender implements QueueableSmsSenderInterface
         try
         {
             $message = $this->renderer->render($smsMessage);
-	        $this->dispatcher->send($message);
+
+            return $this->dispatcher->send($message);
         }
         catch(\Exception $e)
         {
@@ -76,7 +77,7 @@ class SmsSender implements QueueableSmsSenderInterface
     {
         try
         {
-	        $this->dispatcher->send($message);
+	        return $this->dispatcher->send($message);
         }
         catch(\Exception $e)
         {
