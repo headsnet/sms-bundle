@@ -1,3 +1,8 @@
+### 18 October 2017 - Version 0.1.10:
+ - Naming conventions improved
+ - Dispatch event on message send
+ - Removed lock file
+
 ### 17 October 2017 - Version 0.1.9:
  - Add message body and recipient to SmsResultItem
  - Return instance of SmsResultItemInterface when sending
