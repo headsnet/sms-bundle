@@ -6,7 +6,7 @@ namespace Headsnet\SmsBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Event is dispatched when push notifications are received at the end-points
+ * Event is dispatched when the bundle is notified of SMS activity by the gateway.
  */
 class SmsEvent extends Event
 {
@@ -18,12 +18,12 @@ class SmsEvent extends Event
 	/**
 	 * @var string
 	 */
-	private $from;
+	private $recipient;
 
 	/**
 	 * @var string
 	 */
-	private $body;
+	private $message;
 
 	/**
 	 * @var string
@@ -33,15 +33,15 @@ class SmsEvent extends Event
 	/**
 	 * @param string      $messageId
 	 * @param string      $status
-	 * @param string|null $from
-	 * @param string|null $body
+	 * @param string|null $recipient
+	 * @param string|null $message
 	 */
-	public function __construct(string $messageId, string $status, $from = null, $body = null)
+	public function __construct(string $messageId, string $status, $recipient = null, $message = null)
 	{
 		$this->messageId = $messageId;
 		$this->status = $status;
-		$this->from = $from;
-		$this->body = $body;
+		$this->recipient = $recipient;
+		$this->message = $message;
 	}
 
 	/**
@@ -69,9 +69,9 @@ class SmsEvent extends Event
 	 *
 	 * @return string
 	 */
-	public function getFrom()
+	public function getRecipient()
 	{
-		return $this->from;
+		return $this->recipient;
 	}
 
 	/**
@@ -79,9 +79,9 @@ class SmsEvent extends Event
 	 *
 	 * @return string
 	 */
-	public function getBody()
+	public function getMessage()
 	{
-		return $this->body;
+		return $this->message;
 	}
 
 }
