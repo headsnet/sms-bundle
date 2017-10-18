@@ -24,6 +24,11 @@ final class SmsEvents
 	const RECEIVED = 'headsnet.sms.received';
 
 	/**
+	 * This event is dispatched when an SMS is sent
+	 */
+	const SENT = 'headsnet.sms.sent';
+
+	/**
 	 * This event is dispatched when an opt-out request is received
 	 */
 	const OPT_OUT = 'headsnet.sms.opt_out';

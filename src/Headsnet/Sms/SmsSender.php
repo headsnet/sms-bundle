@@ -5,10 +5,15 @@ namespace Headsnet\Sms;
 
 use Headsnet\Sms\Exception\SmsSenderException;
 use Headsnet\Sms\Dispatcher\DispatcherInterface;
+use Headsnet\Sms\Model\Interfaces\SmsResultItemInterface;
 use Headsnet\Sms\Model\Interfaces\TransformedSmsMessageInterface;
 use Headsnet\Sms\Model\SmsMessage;
 use Headsnet\Sms\Renderer\RendererInterface;
+use Headsnet\SmsBundle\Event\SmsSendEvent;
+use Headsnet\SmsBundle\SmsEvents;
+use Headsnet\SmsBundle\SmsStatus;
 use SplPriorityQueue;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class SmsSender is actually an SMS broker, which sends (forwards) SMS
@@ -31,17 +36,28 @@ class SmsSender implements QueueableSmsSenderInterface
 	 */
 	private $queue;
 
-    /**
-     * Constructor.
-     *
-     * @param DispatcherInterface $dispatcher
-     * @param RendererInterface   $renderer
-     */
-    public function __construct(DispatcherInterface $dispatcher, RendererInterface $renderer)
+	/**
+	 * @var EventDispatcherInterface
+	 */
+	private $eventDispatcher;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param DispatcherInterface      $dispatcher
+	 * @param RendererInterface        $renderer
+	 * @param EventDispatcherInterface $eventDispatcher
+	 */
+    public function __construct(
+    	DispatcherInterface $dispatcher,
+	    RendererInterface $renderer,
+	    EventDispatcherInterface $eventDispatcher
+    )
     {
         $this->dispatcher = $dispatcher;
         $this->renderer = $renderer;
         $this->queue = new SplPriorityQueue();
+	    $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -62,7 +78,7 @@ class SmsSender implements QueueableSmsSenderInterface
         {
             $message = $this->renderer->render($smsMessage);
 
-            return $this->dispatcher->send($message);
+            return $this->doSend($message);
         }
         catch(\Exception $e)
         {
@@ -77,7 +93,7 @@ class SmsSender implements QueueableSmsSenderInterface
     {
         try
         {
-	        return $this->dispatcher->send($message);
+	        return $this->doSend($message);
         }
         catch(\Exception $e)
         {
@@ -110,4 +126,22 @@ class SmsSender implements QueueableSmsSenderInterface
             $this->sendFirstFromQueue();
         }
     }
+
+	/**
+	 * @param TransformedSmsMessageInterface $message
+	 *
+	 * @return SmsResultItemInterface
+	 */
+	private function doSend(TransformedSmsMessageInterface $message)
+	{
+		$result = $this->dispatcher->send($message);
+
+		$event = new SmsSendEvent(
+			$result->getId(), SmsStatus::STATUS_SENT, $result->getRecipient(), $result->getMessage()
+		);
+		$this->eventDispatcher->dispatch(SmsEvents::SENT, $event);
+
+		return $result;
+    }
+
 }
