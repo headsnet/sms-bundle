@@ -8,7 +8,7 @@ use Headsnet\Sms\Dispatcher\DispatcherInterface;
 use Headsnet\Sms\Model\Interfaces\TransformedSmsMessageInterface;
 use Headsnet\Sms\Model\SmsMessage;
 use Headsnet\Sms\Renderer\RendererInterface;
-use Headsnet\SmsBundle\Event\SmsSendEvent;
+use Headsnet\SmsBundle\Event\SmsEvent;
 use Headsnet\SmsBundle\SmsEvents;
 use Headsnet\SmsBundle\SmsStatus;
 use SplPriorityQueue;
@@ -133,9 +133,10 @@ class SmsSender implements QueueableSmsSenderInterface
 	{
 		$result = $this->dispatcher->send($message);
 
-		$event = new SmsSendEvent(
+		$event = new SmsEvent(
 			$result->getId(), SmsStatus::STATUS_SENT, $result->getRecipient(), $result->getMessage()
 		);
+
 		$this->eventDispatcher->dispatch(SmsEvents::SENT, $event);
     }
 

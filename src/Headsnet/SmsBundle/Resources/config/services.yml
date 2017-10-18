@@ -30,6 +30,7 @@ services:
     arguments:
       - '@headsnet_sms.dispatcher.class'
       - '@Headsnet\Sms\Renderer\Renderer'
+      - '@event_dispatcher'
 
   headsnet_sms.sms_factory:
     class: '%headsnet_sms.default.factory.class%'
