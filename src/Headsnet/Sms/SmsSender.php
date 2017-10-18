@@ -5,7 +5,6 @@ namespace Headsnet\Sms;
 
 use Headsnet\Sms\Exception\SmsSenderException;
 use Headsnet\Sms\Dispatcher\DispatcherInterface;
-use Headsnet\Sms\Model\Interfaces\SmsResultItemInterface;
 use Headsnet\Sms\Model\Interfaces\TransformedSmsMessageInterface;
 use Headsnet\Sms\Model\SmsMessage;
 use Headsnet\Sms\Renderer\RendererInterface;
@@ -78,7 +77,7 @@ class SmsSender implements QueueableSmsSenderInterface
         {
             $message = $this->renderer->render($smsMessage);
 
-            return $this->doSend($message);
+            $this->doSend($message);
         }
         catch(\Exception $e)
         {
@@ -93,7 +92,7 @@ class SmsSender implements QueueableSmsSenderInterface
     {
         try
         {
-	        return $this->doSend($message);
+	        $this->doSend($message);
         }
         catch(\Exception $e)
         {
@@ -129,8 +128,6 @@ class SmsSender implements QueueableSmsSenderInterface
 
 	/**
 	 * @param TransformedSmsMessageInterface $message
-	 *
-	 * @return SmsResultItemInterface
 	 */
 	private function doSend(TransformedSmsMessageInterface $message)
 	{
@@ -140,8 +137,6 @@ class SmsSender implements QueueableSmsSenderInterface
 			$result->getId(), SmsStatus::STATUS_SENT, $result->getRecipient(), $result->getMessage()
 		);
 		$this->eventDispatcher->dispatch(SmsEvents::SENT, $event);
-
-		return $result;
     }
 
 }
