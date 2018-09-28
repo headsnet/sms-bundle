@@ -1,3 +1,6 @@
+### 27 September 2018 - Version 0.1.12:
+ - Symfony 4 support
+
 ### 18 October 2017 - Version 0.1.11:
  - Remove duplicate event class
  - Do not return sending result - force implementations to listen to the send event instead
